@@ -1,0 +1,39 @@
+$tablet-portrait-width: 48rem; //768px
+$tablet-landscape-width: 64rem; //1024px
+$desktop-width: 80rem; //1280px
+
+/**
+* Viewport up to 767px
+*/
+@mixin mobile {
+  @media (max-width: #{$tablet-portrait-width - 0.0625rem}) {
+    @content;
+  }
+}
+
+/**
+* Viewport 768px and up
+*/
+@mixin tablet-portrait {
+  @media (min-width: #{$tablet-portrait-width}) {
+    @content;
+  }
+}
+
+/**
+* Viewport 1024px and up
+*/
+@mixin tablet-landscape {
+  @media (min-width: #{$tablet-landscape-width}) {
+    @content;
+  }
+}
+
+/**
+* Viewport 1280px and up
+*/
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
