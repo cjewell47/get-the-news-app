@@ -1,8 +1,10 @@
 import Head from 'next/head';
-import React, { FunctionComponent } from 'react';
-import { PageLayoutPropsInterface } from './layout.interface';
+import React, {FunctionComponent} from 'react';
+import {PageLayoutPropsInterface} from './layout.interface';
 
-const PageLayout: FunctionComponent<PageLayoutPropsInterface> = ({ children }) => {
+const PageLayout: FunctionComponent<PageLayoutPropsInterface> = ({
+  children,
+}) => {
   return (
     <React.Fragment>
       <Head>
@@ -19,11 +21,13 @@ const PageLayout: FunctionComponent<PageLayoutPropsInterface> = ({ children }) =
           crossOrigin=''
         />
       </Head>
-      <main>
+      <main className='bg-offWhite py-4 w-full min-h-screen'>
+        <div className='mx-auto sm:w-mobile md:w-tablet-portrait lg:w-tablet-landscape xl:w-desktop-page'>
         {children}
+        </div>
       </main>
     </React.Fragment>
   );
-}
+};
 
 export default PageLayout;

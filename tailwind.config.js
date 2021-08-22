@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
+        
       },
       width: {
         mobile: 'calc(100% - 2.5rem)',
@@ -22,8 +23,11 @@ module.exports = {
       },
     },
     colors: {
-      white: '#fff',
-      black: '#000',
+      offWhite: '#fcf6b1',
+      dark: '#2d1e2f',
+      yellow: '#f7b32b',
+      turquoise: '#a9e5bb',
+      red: '#e3170a'
     },
     fontSize: {
       '12': '0.75rem', //12px
