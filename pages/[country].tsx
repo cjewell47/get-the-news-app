@@ -1,28 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import Head from 'next/head';
+import PageLayout from '../components/layout/layout';
 
 
 
 const Country: FunctionComponent = () => {
   
   return (
-    <React.Fragment>
-      <Head>
-        <link
-          rel='preload'
-          href='/fonts/avenir-next-bold.woff2'
-          as='font'
-          crossOrigin=''
-        />
-        <link
-          rel='preload'
-          href='/fonts/avenir-next-regular.woff2'
-          as='font'
-          crossOrigin=''
-        />
-      </Head>
+    <PageLayout>
       <h1>Country</h1>
-    </React.Fragment>
+    </PageLayout>
   );
 };
 
