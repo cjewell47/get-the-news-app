@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import data from '../mock-data/countries.json';
+import { Context } from 'vm';
+import { HomePagePropsInterface } from '../interfaces/page.interface';
 
 
-const Home = ({ countries }) => {
+const Home: FunctionComponent<HomePagePropsInterface> = ({ countries }) => {
   console.log('countries', countries);
   
   return (
@@ -28,10 +30,10 @@ const Home = ({ countries }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context: Context) => {
   const { countries } = data;
   return {
-    props: data
+    props: countries
   };
 }
 
