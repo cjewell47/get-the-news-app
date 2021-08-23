@@ -1,6 +1,10 @@
+@import '../../../styles/helpers';
+
 .flag {
   &__container {
-    aspect-ratio: 5 / 3;
+    @include mobile() {
+      aspect-ratio: 5 / 3;
+    }
   }
 }
 

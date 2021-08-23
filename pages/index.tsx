@@ -14,7 +14,7 @@ const Home: FunctionComponent<HomePagePropsInterface> = ({countries}) => {
         <h1 className='text-dark font-bold text-24 mb-8'>Select a country to get the news from</h1>
         <ul className='relative sm:flex sm:flex-col md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 bg-turquoise p-10'>
           {countries.map((country, i) => (
-            <li key={i} className=''>
+            <li key={i}>
               <CountryCard country={country} />
             </li>
           ))}
