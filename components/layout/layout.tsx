@@ -21,7 +21,7 @@ const PageLayout: FunctionComponent<PageLayoutPropsInterface> = ({
           crossOrigin=''
         />
       </Head>
-      <main className='bg-offWhite py-4 w-full min-h-screen'>
+      <main className='bg-offWhite py-16 w-full min-h-screen'>
         <div className='mx-auto sm:w-mobile md:w-tablet-portrait lg:w-tablet-landscape xl:w-desktop-page'>
         {children}
         </div>

@@ -10,7 +10,7 @@ const Home: FunctionComponent<HomePagePropsInterface> = ({countries}) => {
   return (
     <PageLayout>
       <React.Fragment>
-        <h1>Home</h1>
+        <h1 className='text-dark font-bold text-24'>Select a country to get the news from</h1>
         <ul>
           {countries.map((country, i) => (
             <li key={i}>{country.name}</li>
