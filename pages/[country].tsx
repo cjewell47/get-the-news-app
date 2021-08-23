@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
 import PageLayout from '../components/layout/layout';
 import NewsList from '../components/molecules/news-list/news-list';
@@ -9,12 +10,17 @@ import countryData from '../mock-data/countries.json';
 
 
 
-const Country: FunctionComponent<CountryPagePropsInterface> = ({ countries, news, error }) => {
+const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, error }) => {
+  const router = useRouter();
+  /** the current page path */
+  const path = router.asPath;
+
+
   
   return (
     <PageLayout>
       <React.Fragment>
-        <h1>News from wherever...</h1>
+        <h1 className='text-dark font-bold text-24 mb-8'>News from {country.name}</h1>
         <NewsList items={news} />
       </React.Fragment>
     </PageLayout>
@@ -59,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   news ||= [];
 
   const data = {
-    countries, news, error
+    country: thisCountry, news, error
   }
   return {
     props: data,

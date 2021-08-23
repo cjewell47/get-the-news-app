@@ -10,6 +10,11 @@ img {
 }
 .expand__check {
   &:checked {
+    // rotate label when checkbox is checked
+    ~ label .expand__arrow {
+      transform: rotate(180deg);
+    }
+    // expandable content follows checkbox in document
     + .expandable {
       max-height: 800px;
       visibility: visible;
