@@ -1,13 +1,13 @@
-import { Countryterface } from './data.interface';
+import { CountryInterface } from './data.interface';
 
 export interface HomePagePropsInterface {
   /** The list of countries which news is served for */
-  countries: Countryterface[];
+  countries: CountryInterface[];
 }
 
 export interface CountryPagePropsInterface {
   /** The list of countries which news is served for */
-  countries: Countryterface[];
+  countries: CountryInterface[];
   /** The top news headlines for a particular country */
   news: any[];
   /** Was there an error on this page  */

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import React, { FunctionComponent } from 'react';
 import PageLayout from '../components/layout/layout';
-import { Countryterface, NewsArticleInterface, NewsResponseErrorInterface, NewsResponseInterface } from '../interfaces/data.interface';
+import { CountryInterface, NewsArticleInterface, NewsResponseErrorInterface, NewsResponseInterface } from '../interfaces/data.interface';
 import { CountryPagePropsInterface, ErrorInterface } from '../interfaces/page.interface';
 import countryData from '../mock-data/countries.json';
 
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   /** The country code from the url */
   const code = context?.query?.country;
   /** country which corresponds to this url */
-  const thisCountry: Countryterface = countries.find(country => country.code === code);
+  const thisCountry: CountryInterface = countries.find(country => country.code === code);
   /** amount of news items to fetch */
   const items = 5;
   /** API key - should be stored in env file */

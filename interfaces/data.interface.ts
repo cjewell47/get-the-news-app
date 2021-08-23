@@ -1,5 +1,5 @@
 /** interface for the country items  */
-export interface Countryterface {
+export interface CountryInterface {
   /** name of the country */
   name: string;
   /** two letter country code, corresponds with news api code */
