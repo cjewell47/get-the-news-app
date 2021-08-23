@@ -1,22 +1,6 @@
 {
   "countries": [
     {
-      "name": "United Kingdom",
-      "code": "gb",
-      "image": {
-        "alt": "Flag of the United Kingdom",
-        "src": "https://www.countryflags.com/wp-content/uploads/united-kingdom-flag-png-large.png"
-      }
-    },
-    {
-      "name": "United States of America",
-      "code": "us",
-      "image": {
-        "alt": "Flag of the United States of America",
-        "src": "https://www.countryflags.com/wp-content/uploads/united-states-of-america-flag-png-large.png"
-      }
-    },
-    {
       "name": "Australia",
       "code": "au",
       "image": {
@@ -38,6 +22,22 @@
       "image": {
         "alt": "Flag of India",
         "src": "https://www.countryflags.com/wp-content/uploads/india-flag-png-large.png"
+      }
+    },
+    {
+      "name": "United Kingdom",
+      "code": "gb",
+      "image": {
+        "alt": "Flag of the United Kingdom",
+        "src": "https://www.countryflags.com/wp-content/uploads/united-kingdom-flag-png-large.png"
+      }
+    },
+    {
+      "name": "United States of America",
+      "code": "us",
+      "image": {
+        "alt": "Flag of the United States of America",
+        "src": "https://www.countryflags.com/wp-content/uploads/united-states-of-america-flag-png-large.png"
       }
     }
   ]
