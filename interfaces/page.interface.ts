@@ -7,7 +7,7 @@ export interface HomePagePropsInterface {
 
 export interface CountryPagePropsInterface {
   /** The list of countries which news is served for */
-  country: CountryInterface;
+  country?: CountryInterface;
   /** The top news headlines for a particular country */
   news: any[];
   /** Was there an error on this page  */

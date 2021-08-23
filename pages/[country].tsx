@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
 import PageLayout from '../components/layout/layout';
 import NewsList from '../components/molecules/news-list/news-list';
@@ -11,10 +10,15 @@ import countryData from '../mock-data/countries.json';
 
 
 const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, error }) => {
-  const router = useRouter();
-  /** the current page path */
-  const path = router.asPath;
 
+  if (error.error) {
+    return (<PageLayout>
+      <React.Fragment>
+        <h1 className='text-dark font-bold text-24 mb-8'>Oh no, there's been an error</h1>
+        <h2 className='text-red text-18'>{error.message}</h2>
+      </React.Fragment>
+    </PageLayout>)
+  }
 
   
   return (
@@ -34,18 +38,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { countries } = countryData;
   /** The country code from the url */
   const code = context?.query?.country;
-  /** country which corresponds to this url */
-  const thisCountry: CountryInterface = countries.find(country => country.code === code);
   /** amount of news items to fetch */
   const items = 5;
   /** API key - should be stored in env file */
   const key = 'af755955979b4233ad86d8088b1e6a6f';
+  /** country which corresponds to this url */
+  let thisCountry: CountryInterface | null = countries.find(country => country.code === code);
   /** The news stories for this country */
   let news: NewsArticleInterface[];
   /** Has there been an error? */
   let error: ErrorInterface = {error: false};
 
-
+  // if the url's country code corresponds to one the countries that we serve news for then proceed.
   if (!!thisCountry) {
     const res = await fetch(`https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${key}&pageSize=${items}`);
     const newsResults: NewsResponseInterface | NewsResponseErrorInterface = await res.json();
@@ -57,6 +61,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       error = {error: true, message: 'There\'s been an error retrieving news stories. Please try again later.'};
     }
   } else {
+    // assigned thisCountry as null rather than undefined, 
+    // so it can be passed as a prop and the error page can be served
+    thisCountry ||= null;
     // if there the country code does not correspond to a country on our list, then return an error
     error =  {error: true, message: 'It looks like we don\'t serve news stories for country.'};
   }
