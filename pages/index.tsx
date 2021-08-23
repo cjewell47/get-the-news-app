@@ -3,10 +3,9 @@ import {GetServerSideProps} from 'next';
 import countryData from '../mock-data/countries.json';
 import {HomePagePropsInterface} from '../interfaces/page.interface';
 import PageLayout from '../components/layout/layout';
-import CountryCard from '../components/molecules/country-card/country-card';
+import CountryCard from '../components/atoms/country-card/country-card';
 
 const Home: FunctionComponent<HomePagePropsInterface> = ({countries}) => {
-  console.log('countries', countries);
 
   return (
     <PageLayout>

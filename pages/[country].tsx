@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import React, { FunctionComponent } from 'react';
 import PageLayout from '../components/layout/layout';
+import NewsList from '../components/molecules/news-list/news-list';
 import { CountryInterface, NewsArticleInterface, NewsResponseErrorInterface, NewsResponseInterface } from '../interfaces/data.interface';
 import { CountryPagePropsInterface, ErrorInterface } from '../interfaces/page.interface';
 import countryData from '../mock-data/countries.json';
@@ -12,7 +13,10 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ countries, news
   
   return (
     <PageLayout>
-      <h1>Country</h1>
+      <React.Fragment>
+        <h1>News from wherever...</h1>
+        <NewsList items={news} />
+      </React.Fragment>
     </PageLayout>
   );
 };
