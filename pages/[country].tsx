@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
 import PageLayout from '../components/layout/layout';
 import NewsList from '../components/molecules/news-list/news-list';
@@ -24,6 +25,7 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
   return (
     <PageLayout>
       <React.Fragment>
+        <Link href='/'><a className='any-hover:hover:text-red'>Home</a></Link>
         <h1 className='text-dark font-bold text-24 mb-8'>News from {country.name}</h1>
         <NewsList items={news} />
       </React.Fragment>
