@@ -8,16 +8,11 @@ img {
     grid-column: 2 / -1;
   }
 }
-.expand__check {
-  &:checked {
-    // rotate label when checkbox is checked
-    ~ label .expand__arrow {
-      transform: rotate(180deg);
-    }
-    // expandable content follows checkbox in document
-    + .expandable {
-      max-height: 800px;
-      visibility: visible;
-    }
+// set max-height when content is expanded so there can be a height transition without having a fixed height.
+.expandable {
+  max-height: 800px;
+  visibility: visible;
+  & + button .expand__arrow {
+    transform: rotate(180deg);
   }
 }

@@ -4,6 +4,8 @@ import {NewsItemPropsInterface} from './news-item.interface';
 import styles from './news-item.module.scss';
 
 const NewsItem: FunctionComponent<NewsItemPropsInterface> = ({item}) => {
+  /** is the news item expanded to show more text? */
+  const [isExpanded, toggleExpand] = useState(false);
 
   return (
     <li className='relative flex flex-col bg-red rounded-3xl mb-5'>
@@ -19,9 +21,8 @@ const NewsItem: FunctionComponent<NewsItemPropsInterface> = ({item}) => {
           <p>published at: {formatDate(item.publishedAt)}</p>
         </div>
       </div>
-      <input type='checkbox' name='expand' id={item.publishedAt} className={`${styles.expand__check} h-0 w-0`} />
       <div
-        className={`${styles.expandable} md:grid md:grid-cols-4 m-2 bg-turquoise rounded-2xl max-h-0 invisible overflow-hidden text-dark transition-all`}>
+        className={`${isExpanded ? styles.expandable : ''} md:grid md:grid-cols-4 m-2 bg-turquoise rounded-2xl max-h-0 invisible overflow-hidden text-dark transition-all`}>
         {item.urlToImage ? (
           <img src={item.urlToImage} alt={item.title} className='col-span-1' />
         ) : null}
@@ -33,7 +34,7 @@ const NewsItem: FunctionComponent<NewsItemPropsInterface> = ({item}) => {
           </a>
         </div>
       </div>
-      <label className='bg-yellow w-8 h-8 -mb-2 rounded-full flex items-center justify-center mx-auto relative cursor-pointer' htmlFor={item.publishedAt}><img className={`${styles.expand__arrow} h-5 w-5 transition-transform`} src='/svgs/arrow.svg'/></label>
+      <button onClick={() => toggleExpand(!isExpanded)} className='bg-yellow w-8 h-8 -mb-2 rounded-full flex items-center justify-center mx-auto relative cursor-pointer' name={isExpanded ? 'close' : 'expand'}><img className={`${styles.expand__arrow} h-5 w-5 transition-transform`} src='/svgs/arrow.svg'/></button>
     </li>
   );
 };
