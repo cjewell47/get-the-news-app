@@ -36,7 +36,9 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
 export default Country;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {  
-  /** the list of countries which news can be fetched for */
+  /** the list of countries which news can be fetched for
+   * this would be an API fetch normally - but just mock data in this instance.
+   */
   const { countries } = countryData;
   /** The country code from the url */
   const code = context?.query?.country;
@@ -54,6 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // if the url's country code corresponds to one the countries that we serve news for then proceed.
   if (!!thisCountry) {
     const res = await fetch(`https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${key}&pageSize=${items}`);
+    /** response from news API as json */
     const newsResults: NewsResponseInterface | NewsResponseErrorInterface = await res.json();
 
     if (newsResults.status === 'ok') {
