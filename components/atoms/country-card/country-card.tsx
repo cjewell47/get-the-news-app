@@ -8,15 +8,12 @@ const CountryCard: FunctionComponent<CountryCardPropsInterface> = ({
 }) => {
   return (
     <div className='relative group rounded-lg'>
-      <div
-        className={`${styles.flag__container} overflow-hidden md:h-32 rounded-lg`}>
-        <img
-          alt={country.image.alt}
-          src={country.image.src}
-          loading='lazy'
-          className='object-cover w-full h-full transform any-hover:group-hover:scale-110 transition'
-        />
-      </div>
+      <img
+        alt={country.image.alt}
+        src={country.image.src}
+        loading='lazy'
+        className={`${styles.flag__container} md:h-32 w-full rounded-lg any-hover:group-hover:shadow-md transition`}
+      />
       <Link href={`/${country.code}`}>
         <a
           className={`${styles.country__link} font-bold text-20 any-hover:group-hover:text-red transition-colors`}>

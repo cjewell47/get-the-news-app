@@ -29,6 +29,9 @@ module.exports = {
       turquoise: '#a9e5bb',
       red: '#e3170a'
     },
+    boxShadow: {
+      md: '0 1px 1px hsl(0deg 0% 0% / 0.075),0 2px 2px hsl(0deg 0% 0% / 0.075),0 4px 4px hsl(0deg 0% 0% / 0.075),0 8px 8px hsl(0deg 0% 0% / 0.075),0 16px 16px hsl(0deg 0% 0% / 0.075)',
+    },
     fontSize: {
       '12': '0.75rem', //12px
       '14': '0.875rem', //14px
@@ -47,7 +50,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      scale: ['hover', 'group-hover'],
+      boxShadow: ['hover', 'group-hover'],
     },
   },
   plugins: []

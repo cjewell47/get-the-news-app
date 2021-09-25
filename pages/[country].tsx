@@ -7,9 +7,6 @@ import { CountryInterface, NewsArticleInterface, NewsResponseErrorInterface, New
 import { CountryPagePropsInterface, ErrorInterface } from '../interfaces/page.interface';
 import countryData from '../mock-data/countries.json';
 
-
-
-
 const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, error }) => {
 
   if (error.error) {
@@ -21,7 +18,6 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
     </PageLayout>)
   }
 
-  
   return (
     <PageLayout>
       <React.Fragment>
@@ -43,9 +39,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   /** The country code from the url */
   const code = context?.query?.country;
   /** amount of news items to fetch */
-  const items = 5;
-  /** API key - should be stored in env file */
-  const key = 'af755955979b4233ad86d8088b1e6a6f';
+  const items = 10;
+  /** API key */
+  const key = process.env.NEWS_API_KEY;
   /** country which corresponds to this url */
   let thisCountry: CountryInterface | null = countries.find(country => country.code === code);
   /** The news stories for this country */
