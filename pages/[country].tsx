@@ -1,13 +1,32 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import PageLayout from '../components/layout/layout';
+import Filter from '../components/molecules/filter/filter';
 import NewsList from '../components/molecules/news-list/news-list';
 import { CountryInterface, NewsArticleInterface, NewsResponseErrorInterface, NewsResponseInterface } from '../interfaces/data.interface';
 import { CountryPagePropsInterface, ErrorInterface } from '../interfaces/page.interface';
 import countryData from '../mock-data/countries.json';
 
 const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, error }) => {
+
+  const [filteredNews, setFilteredNews] = useState<NewsArticleInterface[]>([]);
+
+  const filterOptions = useMemo(() => {
+    const sources = news.map(n => n.source.name)
+    const sourcesDeduped = Array.from(new Set(sources));
+    console.log(sourcesDeduped);
+    return {
+      category: 'Sources',
+      options: sourcesDeduped
+    }
+  }, [])
+
+  useEffect(() => {
+    setFilteredNews(news);
+  },[])
+
+  const update = (articles: NewsArticleInterface[]) => setFilteredNews(articles);
 
   if (error.error) {
     return (<PageLayout>
@@ -23,7 +42,14 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
       <React.Fragment>
         <Link href='/'><a className='any-hover:hover:text-red'>Home</a></Link>
         <h1 className='text-dark font-bold text-24 mb-8'>News from {country.name}</h1>
-        <NewsList items={news} />
+        <div className='grid grid-cols-4'>
+          <div className='col-span-4 md:col-span-1'>
+            <Filter options={filterOptions} update={update} />
+          </div>
+          <div className='col-span-4 md:col-span-3'>
+            <NewsList items={filteredNews} />
+          </div>
+        </div>
       </React.Fragment>
     </PageLayout>
   );

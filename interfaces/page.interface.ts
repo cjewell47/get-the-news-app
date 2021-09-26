@@ -1,4 +1,4 @@
-import { CountryInterface } from './data.interface';
+import { CountryInterface, NewsArticleInterface } from './data.interface';
 
 export interface HomePagePropsInterface {
   /** The list of countries which news is served for */
@@ -9,7 +9,7 @@ export interface CountryPagePropsInterface {
   /** The list of countries which news is served for */
   country?: CountryInterface;
   /** The top news headlines for a particular country */
-  news: any[];
+  news: NewsArticleInterface[];
   /** Was there an error on this page  */
   error: ErrorInterface;
 }

@@ -8,7 +8,7 @@ const NewsItem: FunctionComponent<NewsItemPropsInterface> = ({item}) => {
   const [isExpanded, toggleExpand] = useState(false);
 
   return (
-    <li className='relative flex flex-col bg-red rounded-3xl mb-5'>
+    <li className='relative flex flex-col bg-red rounded-3xl mb-8'>
       <div className='w-full text-offWhite font-bold py-2 px-4'>
         <h2 className='sm:text-18 md:text-20'>{item.title}</h2>
         <div className='font-medium flex sm:flex-col'>

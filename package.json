@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
     "next": "11.0.1",
@@ -16,15 +17,21 @@
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
     "@types/react": "17.0.15",
     "autoprefixer": "^10.2.5",
+    "babel-jest": "^27.2.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.0.0",
     "eslint-config-next": "11.0.1",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.2.2",
     "postcss": "^8.2.13",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^17.0.2",
     "tailwindcss": "^2.1.2",
     "typescript": "4.3.5"
   }
