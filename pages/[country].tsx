@@ -16,15 +16,14 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
   const [filterOptions, setFilterOptions] = useState<FilterOptionInterface[]>([]);
 
   useEffect(() => {
-    setFilteredNews(news);
     const sources = news.map(n => n.source.name)
     const sourcesDeduped = Array.from(new Set(sources))
-      .map(source => ({name: source, checked: true}));
-      setFilterOptions(sourcesDeduped)
+      .map(source => ({name: source, checked: false}));
+    setFilterOptions(sourcesDeduped)
   },[])
 
   useEffect(() => {
-    const updatingNews = news.filter(article => {
+    const updatedFilteredNews = news.filter(article => {
       let selected = false;
       const thisSource = filterOptions.find(opt => opt.name === article.source.name)
       if (thisSource?.checked) {
@@ -32,7 +31,7 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
       }
       return selected;
     })
-    setFilteredNews(updatingNews);
+    setFilteredNews(updatedFilteredNews.length === 0 ? news : updatedFilteredNews);
   }, [filterOptions])
 
   const update = (options: FilterOptionInterface[]) => setFilterOptions(options);

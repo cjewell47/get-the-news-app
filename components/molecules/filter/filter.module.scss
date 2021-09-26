@@ -1,0 +1,38 @@
+.checkmark {
+  &::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+.checkbox {
+  &:checked {
+    & + .checkmark {
+      background: #e3170a;
+      border: #e3170a;
+      &::after {
+        display: block;
+      }
+    }
+  }
+  &:focus:not(:focus-visible) {
+    & ~ .checkbox__label {
+      outline: none;
+    }
+  }
+  &:focus-visible {
+    & ~ .checkbox__label {
+      outline: blue solid 2px;
+    }
+  }
+}
