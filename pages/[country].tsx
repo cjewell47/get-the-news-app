@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import PageLayout from '../components/layout/layout';
 import Filter from '../components/molecules/filter/filter';
+import { FilterOptionInterface } from '../components/molecules/filter/filter.interface';
 import NewsList from '../components/molecules/news-list/news-list';
 import { CountryInterface, NewsArticleInterface, NewsResponseErrorInterface, NewsResponseInterface } from '../interfaces/data.interface';
 import { CountryPagePropsInterface, ErrorInterface } from '../interfaces/page.interface';
@@ -12,21 +13,29 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
 
   const [filteredNews, setFilteredNews] = useState<NewsArticleInterface[]>([]);
 
-  const filterOptions = useMemo(() => {
-    const sources = news.map(n => n.source.name)
-    const sourcesDeduped = Array.from(new Set(sources));
-    console.log(sourcesDeduped);
-    return {
-      category: 'Sources',
-      options: sourcesDeduped
-    }
-  }, [])
+  const [filterOptions, setFilterOptions] = useState<FilterOptionInterface[]>([]);
 
   useEffect(() => {
     setFilteredNews(news);
+    const sources = news.map(n => n.source.name)
+    const sourcesDeduped = Array.from(new Set(sources))
+      .map(source => ({name: source, checked: true}));
+      setFilterOptions(sourcesDeduped)
   },[])
 
-  const update = (articles: NewsArticleInterface[]) => setFilteredNews(articles);
+  useEffect(() => {
+    const updatingNews = news.filter(article => {
+      let selected = false;
+      const thisSource = filterOptions.find(opt => opt.name === article.source.name)
+      if (thisSource?.checked) {
+        selected = true;
+      }
+      return selected;
+    })
+    setFilteredNews(updatingNews);
+  }, [filterOptions])
+
+  const update = (options: FilterOptionInterface[]) => setFilterOptions(options);
 
   if (error.error) {
     return (<PageLayout>
@@ -42,9 +51,9 @@ const Country: FunctionComponent<CountryPagePropsInterface> = ({ country, news, 
       <React.Fragment>
         <Link href='/'><a className='any-hover:hover:text-red'>Home</a></Link>
         <h1 className='text-dark font-bold text-24 mb-8'>News from {country.name}</h1>
-        <div className='grid grid-cols-4'>
+        <div className='grid grid-cols-4 gap-5'>
           <div className='col-span-4 md:col-span-1'>
-            <Filter options={filterOptions} update={update} />
+            <Filter filterOptions={filterOptions} update={update} />
           </div>
           <div className='col-span-4 md:col-span-3'>
             <NewsList items={filteredNews} />

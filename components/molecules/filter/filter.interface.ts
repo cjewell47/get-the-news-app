@@ -1,10 +1,10 @@
-export interface FilterOptionsInterface {
-  category: string;
-  options: string[];
+export interface FilterOptionInterface {
+  name: string;
+  checked: boolean;
 }
 
 export interface FilterInterfaceProps {
   update: Function;
-  options: FilterOptionsInterface;
+  filterOptions: FilterOptionInterface[];
 }
 
